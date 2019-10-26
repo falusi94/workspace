@@ -2,6 +2,7 @@
 
 CONFIG_FILES=(
   '(./configs/config.fish ~/.config/fish/config.fish)'
+  '(./configs/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
 )
 
 for entry in "${CONFIG_FILES[@]}"
