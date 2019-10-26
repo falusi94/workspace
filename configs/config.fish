@@ -47,7 +47,11 @@ alias rc="bin/spring stop; bundle exec rails console"
 alias prep="bundle exec rake db:test:prepare"
 alias rts="bundle exec rake routes"
 function rt
-  bundle exec rake test TEST=$argv
+  if test -n "$argv"
+    bundle exec rake test TEST=$argv
+  else
+    bundle exec rake test
+  end
 end
 
 # js/npm utils
