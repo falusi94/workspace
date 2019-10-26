@@ -5,6 +5,14 @@ export LC_ALL=$LANG.UTF-8
 # configure less
 export LESS="R"
 
+# load local config if provided
+begin
+  set -l LOCAL_CONFIG ~/.config/fish/config.local.fish
+  if test -f $LOCAL_CONFIG
+    source $LOCAL_CONFIG
+  end
+end
+
 # clang aliases
 alias cl++11="clear; clang++ -std=c++11 -Wall -Wdeprecated -pedantic"
 alias cl++="clear; clang++ -std=c++99 -Wall -Wdeprecated -pedantic"
