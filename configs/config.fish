@@ -5,11 +5,17 @@ export LC_ALL=$LANG.UTF-8
 # configure less
 export LESS="R"
 
-# load local config if provided
+# load configs if provided
 begin
-  set -l LOCAL_CONFIG ~/.config/fish/config.local.fish
-  if test -f $LOCAL_CONFIG
-    source $LOCAL_CONFIG
+  set -l ASDF_CONFIG /usr/local/opt/asdf/asdf.fish
+  set -l LOCAL_CONFIGS ~/.config/fish/config.local.fish
+
+  set -l config_files $ASDF_CONFIG $LOCAL_CONFIGS
+
+  for config_file in $config_files;
+    if test -f $config_file
+      source $config_file
+    end
   end
 end
 
@@ -80,6 +86,3 @@ end
 alias gcx="git cherry-pick -x"
 alias gca="git commit --amend"
 alias gcp="git cherry-pick"
-
-# asdf init
-source /usr/local/opt/asdf/asdf.fish
