@@ -5,6 +5,9 @@ CONFIG_FILES=(
   '(./configs/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
 )
 
+echo 'Applying config'
+echo '----------------------------------------'
+
 for entry in "${CONFIG_FILES[@]}"
 do
   eval paths=$entry
