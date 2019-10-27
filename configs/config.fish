@@ -37,6 +37,7 @@ alias pwdgenerate="openssl rand -base64 32"
 alias aa="atom ."
 alias ll="ls -lahLG"
 alias lls="ls -lahLSG"
+alias clean_docker='sh -c \'docker rmi $(docker images --quiet --filter "dangling=true")\''
 
 # ruby/rails utils
 alias be="bundle exec"
