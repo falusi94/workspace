@@ -64,11 +64,13 @@ function init_module
   touch $argv.redux.test.js
   touch $argv.service.js
 end
+alias nv="npm version"
 
 # git utils
 alias gpll="git pull --rebase"
 alias gcm="git commit"
 alias gpsh="git push"
+alias gpt="git push origin --tags"
 alias g="git"
 alias gf="git fetch -p"
 alias gst="git stash --include-untracked"
