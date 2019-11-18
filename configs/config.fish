@@ -94,3 +94,10 @@ end
 alias gcx="git cherry-pick -x"
 alias gca="git commit --amend"
 alias gcp="git cherry-pick"
+function grdt
+  if test -n "$argv"
+    env GIT_COMMITTER_DATE=$argv git commit --amend --date=$argv --no-edit;
+  else
+    echo 'Missing date argument, the format should be like 2019.11.10 14:28:13'
+  end
+end
