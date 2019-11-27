@@ -3,6 +3,7 @@
 CONFIG_FILES=(
   '(./configs/config.fish ~/.config/fish/config.fish)'
   '(./configs/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
+  '(./configs/snippets.cson ~/.atom/snippets.cson)'
 )
 
 echo 'Applying config'

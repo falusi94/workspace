@@ -1,0 +1,98 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+'.source.ruby':
+  'Def initialize':
+    'prefix': 'defi'
+    'body': 'def initialize\n  $1\nend'
+  'Def self method':
+    'prefix': 'defs'
+    'body': 'def self.${1:method_name}\n  $2\nend'
+  'Def method with rescue':
+    'prefix': 'defr'
+    'body': 'def ${1:method_name}\n  $2\nrescue ${3:StandardError} => e\n$4\nend'
+  'Add debugger':
+    'prefix': 'de'
+    'body': 'debugger'
+  'Add rescue statement':
+    'prefix': 're'
+    'body': 'rescue ${1:StandardError} => e\n$2'
+  'Def class':
+    'prefix': 'cl'
+    'body': 'class ${1:ClassName}\n$2\nend'
+  'Def begin-rescue-end':
+    'prefix': 'be'
+    'body': 'begin\n  $1\nrescue ${2:StandardError} => e\n  $3\nend'
+  'Def module':
+    'prefix': 'mod'
+    'body': 'module ${1:ModuleName}\n$2\nend'
+  'Attr reader':
+    'prefix': 'atr'
+    'body': 'attr_reader :$1'
+  'Attr accessor':
+    'prefix': 'ata'
+    'body': 'attr_accessor :$1'
+  'Magic comment # frozen_string_literal: true':
+    'prefix': 'fro'
+    'body': '# frozen_string_literal: true'
+  'RSpec shared examples block':
+    'prefix': 'sha'
+    'body': 'shared_examples \'${1:wanna share this}\' do\n  $2\nend'
+  'RSpec it_behaves_like':
+    'prefix': 'ibl'
+    'body': 'it_behaves_like \'${1:this shared example}\''
+  'FactoryBot init':
+    'prefix': 'fact'
+    'body': 'FactoryBot.define do\n  factory :${1:model} do\n    $2\n  end\nend'
+  'RSpec context block':
+    'prefix': 'con'
+    'body': 'context \'${1:my fancy context}\' do\n  $2\nend'
+  'RSpec it block':
+    'prefix': 'it'
+    'body': 'it \'${1:does it}\' do\n  $2\nend'
+  'RSpec describe block':
+    'prefix': 'desc'
+    'body': 'describe \'${1:my fancy describe}\' do\n  $2\nend'
+  'RSpec let block':
+    'prefix': 'let'
+    'body': 'let(:${1:it_be}) { $2 }'
+  'RSpec let! block':
+    'prefix': 'let!'
+    'body': 'let!(:${1:it_be}) { $2 }'
+  'RSpec subject block':
+    'prefix': 'subj'
+    'body': 'subject { ${1:do_it} }'
+  'RSpec described_class':
+    'prefix': 'dc'
+    'body': 'described_class'
+  'RSpec before block':
+    'prefix': 'bef'
+    'body': 'before { ${1:i_test} }'
+  'RSpec expect':
+    'prefix': 'exp'
+    'body': 'expect(${1:anything}).${2:to} ${3:everything}'
+  'FactoryBot traits':
+    'prefix': 'trait'
+    'body': 'trait :${1:with_pony_tail} do\n  $2\nend'
+  'Private modifier':
+    'prefix': 'pri';
+    'body': 'private\n\n'
