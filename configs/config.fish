@@ -39,6 +39,7 @@ alias ll="ls -lahLG"
 alias lls="ls -lahLSG"
 alias clean_docker='sh -c \'docker rmi $(docker images --quiet --filter "dangling=true")\''
 alias chrcors='open -n -a /Applications/Chromium.app/Contents/MacOS/Chromium  --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security'
+alias de='cd ~/Develop'
 
 # ruby/rails utils
 alias be="bundle exec"
