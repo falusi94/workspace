@@ -1,9 +1,9 @@
 #!/bin/bash
 
 CONFIG_FILES=(
-  '(./configs/config.fish ~/.config/fish/config.fish)'
-  '(./configs/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
-  '(./configs/snippets.cson ~/.atom/snippets.cson)'
+  '(./configs/fish/config.fish ~/.config/fish/config.fish)'
+  '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
+  '(./configs/atom/snippets.cson ~/.atom/snippets.cson)'
 )
 
 echo 'Applying config'
