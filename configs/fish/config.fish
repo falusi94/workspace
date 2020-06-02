@@ -43,12 +43,13 @@ alias de='cd ~/Develop'
 
 # ruby/rails utils
 alias be="bundle exec"
-alias rs="bundle exec rspec --colour"
-alias rss="bin/rspec --colour"
-alias ft="bundle exec rake test; bundle exec rake db:test:prepare; bundle exec rspec --colour"
-alias rc="bin/spring stop; bundle exec rails console"
+alias rs="bundle exec rspec --color"
+alias rss="bin/rspec --color"
+alias rc="bundle exec rails console"
+alias rcc="bin/rails console"
 alias prep="bundle exec rake db:test:prepare"
 alias rts="bundle exec rake routes"
+alias rtsg="bundle exec rake routes | grep"
 function rt
   if test -n "$argv"
     bundle exec rake test TEST=$argv
@@ -60,12 +61,6 @@ end
 # js/npm utils
 alias nrt="npm run test:watch"
 alias nrs="npm start"
-function init_module
-  touch $argv.constants.js
-  touch $argv.redux.js
-  touch $argv.redux.test.js
-  touch $argv.service.js
-end
 alias nv="npm version"
 
 # git utils
