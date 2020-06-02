@@ -4,6 +4,7 @@ CONFIG_FILES=(
   '(./configs/fish/config.fish ~/.config/fish/config.fish)'
   '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
   '(./configs/atom/snippets.cson ~/.atom/snippets.cson)'
+  '(./configs/vim/.vimrc ~/.vimrc)'
 )
 
 echo 'Applying config'
