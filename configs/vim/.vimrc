@@ -28,15 +28,20 @@ Plug 'dense-analysis/ale'
 Plug 'vim-scripts/vim-auto-save'
 Plug 'tpope/vim-sensible'
 Plug 'mbbill/undotree'
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'bkad/CamelCaseMotion'
+
+" TreeView
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'PhilRunninger/nerdtree-visual-selection'
 
 " Syntax helpers
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Snippets & autocompletion
 Plug 'ajh17/VimCompletesMe'
@@ -59,9 +64,11 @@ Plug 'tpope/vim-dispatch'
 " Git plugins
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'idanarye/vim-merginal'
 Plug 'itchyny/vim-gitbranch'
 Plug 'samoshkin/vim-mergetool'
+Plug 'APZelos/blamer.nvim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -192,6 +199,11 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit'
 \}
 
+" bkad/CamelCaseMotion
+map <silent> W <Plug>CamelCaseMotion_w
+map <silent> B <Plug>CamelCaseMotion_b
+map <silent> E <Plug>CamelCaseMotion_e
+
 set listchars=eol:¬,tab:»»,trail:~,extends:>,precedes:<,space:·
 set list
 
@@ -202,6 +214,9 @@ set tabstop=2
 set softtabstop=2
 set expandtab
 set shiftwidth=2
+
+set colorcolumn=100,120
+highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
 
 " Change cursor shape for insert and replace mode for tmux in iTerm2.app
 " https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
@@ -214,9 +229,20 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Override syntax highlight
 autocmd BufNewFile,BufRead *.inky set syntax=eruby
+autocmd BufNewFile,BufRead *.arb set syntax=ruby
+
+" Disable old regex engine to speed up javascript
+" https://jameschambers.co.uk/vim-typescript-slow
+set re=0
 
 set number relativenumber
 set mouse=a
+
+" Spell checking
+autocmd FileType gitcommit setlocal spell spelllang=en_us
+autocmd FileType markdown setlocal spell spelllang=en_us
+autocmd FileType html setlocal spell spelllang=en_us
+autocmd FileType cucumber setlocal spell spelllang=en_us
 
 " Onedark.vim
 " https://github.com/joshdick/onedark.vim
