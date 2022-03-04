@@ -31,6 +31,8 @@ Plug 'mbbill/undotree'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'bkad/CamelCaseMotion'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-abolish'
 
 " TreeView
 Plug 'preservim/nerdtree'
@@ -42,6 +44,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
+
+Plug 'vim-utils/vim-troll-stopper'
 
 " Snippets & autocompletion
 Plug 'ajh17/VimCompletesMe'
@@ -91,9 +95,9 @@ let test#ruby#rspec#options = {
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
   \   'ruby': ['standardrb', 'rubocop'],
-  \   'javascript': ['eslint'],
+  \   'javascript': ['eslint', 'prettier'],
+  \   'javascriptreact': ['eslint', 'prettirer'],
 \}
-" \   'ruby': ['standardrb', 'rubocop', 'solargraph', 'reek', 'rails_best_practices'],
 
 function! LinterStatus() abort
   let l:counts = ale#statusline#Count(bufnr(''))
@@ -124,7 +128,7 @@ let g:lightline = {
       \             [ 'linterinfo' ]],
       \   'right': [ [ 'lineinfo'  ],
       \              [ 'percent'  ],
-      \              [ 'gitbranch' ,'fileformat', 'fileencoding', 'filetype' ] ]
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'fullpath':   'LightlineFilename',
@@ -181,7 +185,6 @@ let g:ackprg = "ag --nogroup --nocolor --column --ignore-case --ignore={'tmp*','
 
 " Far vim
 set lazyredraw            " improve scrolling performance when navigating through large results
-set regexpengine=1        " use old regexp engine
 set ignorecase smartcase  " ignore case only when the pattern contains no capital letters"
 
 " Ctrl+c copy
@@ -231,18 +234,11 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile,BufRead *.inky set syntax=eruby
 autocmd BufNewFile,BufRead *.arb set syntax=ruby
 
-" Disable old regex engine to speed up javascript
-" https://jameschambers.co.uk/vim-typescript-slow
-set re=0
-
 set number relativenumber
 set mouse=a
 
 " Spell checking
-autocmd FileType gitcommit setlocal spell spelllang=en_us
-autocmd FileType markdown setlocal spell spelllang=en_us
-autocmd FileType html setlocal spell spelllang=en_us
-autocmd FileType cucumber setlocal spell spelllang=en_us
+autocmd FileType gitcommit,markdown,html,cucumber setlocal spell spelllang=en_us
 
 " Onedark.vim
 " https://github.com/joshdick/onedark.vim
