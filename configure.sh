@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CONFIG_FILES=(
   '(./configs/fish/config.fish ~/.config/fish/config.fish)'

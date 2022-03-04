@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 read -p "Are you sure? [y/N] " -n 1 -r
 
