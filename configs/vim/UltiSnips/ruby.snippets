@@ -1,0 +1,19 @@
+snippet defs "Class method definition"
+def self.${1:class_method_name}(${2:*args})
+	new($2).$1
+end
+endsnippet
+
+snippet def "Method definition"
+def ${1:method_name}
+	${0}
+end
+endsnippet
+
+snippet atr "attr_reader"
+attr_reader :${1:attribute}
+endsnippet
+
+snippet atw "attr_writer"
+attr_writer :${1:attribute}
+endsnippet
