@@ -11,11 +11,23 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
 
-" Language servers
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/denite.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+" Popup completion
+Plug 'vim-denops/denops.vim'
+" Plug 'vim-denops/denops-helloworld.vim'
+Plug 'Shougo/ddc.vim'
+" Sorters, matchers & converters
+Plug 'Shougo/ddc-matcher_head'
+Plug 'Shougo/ddc-matcher_length'
+Plug 'Shougo/ddc-sorter_rank'
+Plug 'tani/ddc-fuzzy'
+Plug 'matsui54/ddc-converter_truncate'
+" Sources
+Plug 'Shougo/ddc-around'
+Plug 'LumaKernel/ddc-file'
+Plug 'statiolake/ddc-ale'
+Plug 'delphinus/ddc-ctags'
+Plug 'matsui54/ddc-ultisnips'
+Plug 'ippachi/ddc-yank'
 
 " Linters
 Plug 'dense-analysis/ale'
@@ -94,7 +106,7 @@ let test#ruby#rspec#options = {
 " ALE init
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
-  \   'ruby': ['standardrb', 'rubocop'],
+  \   'ruby': ['ruby', 'solargraph', 'rubocop'],
   \   'javascript': ['eslint', 'prettier'],
   \   'javascriptreact': ['eslint', 'prettirer'],
 \}
@@ -164,21 +176,42 @@ let g:mergetool_prefer_revision = 'local'
 let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
 
-" Deoplete auto complete
-let g:deoplete#enable_at_startup = 1
+" ddc auto complete
+call ddc#custom#patch_global('sources', ['around', 'yank', 'ale', 'ctags', 'file', 'ultisnips'])
+call ddc#custom#patch_global('sourceOptions', {
+  \   '_': {
+  \     'matchers': ['matcher_fuzzy', 'matcher_length'],
+  \     'sorters': ['sorter_fuzzy'],
+  \     'converters': ['converter_fuzzy', 'converter_truncate'],
+  \   },
+  \   'ale': {
+  \     'mark': 'A',
+  \     'cleanResultsWhitespace': v:false,
+  \     'matchers': ['matcher_head', 'matcher_length'],
+  \     'sorters': ['sorter_rank'],
+  \   },
+  \   'ctags': {
+  \     'mark': 'C',
+  \     'matchers': ['matcher_head', 'matcher_length'],
+  \     'sorters': ['sorter_rank'],
+  \   },
+  \   'yank': {
+  \     'mark': 'Y',
+  \   },
+  \   'ultisnips': {
+  \     'mark': 'US',
+  \   },
+  \   'file': {
+  \     'mark': 'F',
+  \     'isVolatile': v:true,
+  \     'forceCompletionPattern': '\S/\S*',
+  \   },
+  \ })
+call ddc#custom#patch_global('filterParams', {
+  \   'converter_truncate': { 'maxAbbrWidth': 50, 'maxInfoWidth': 30 },
+  \ })
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-let g:LanguageClient_serverCommands = {
-  \ 'ruby': ['~/.asdf/shims/solargraph', 'stdio'],
-\ }
+call ddc#enable()
 
 " the_silver_searcher
 let g:ackprg = "ag --nogroup --nocolor --column --ignore-case --ignore={'tmp*','.git*','node_modules'}"

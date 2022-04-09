@@ -15,5 +15,6 @@ echo 'Install vim-plug'
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo 'Install pynvim'
-python3 -m pip3 install pynvim
+echo 'Install deno 🦖'
+asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
+asdf install deno latest
