@@ -5,12 +5,21 @@ export LC_ALL=$LANG.UTF-8
 # configure less
 export LESS="R"
 
+# set Homebrew paths
+if test (arch) = "i386"
+  set HOMEBREW_PREFIX /usr/local
+else
+  set HOMEBREW_PREFIX /opt/homebrew
+end
+
+fish_add_path -m --path $HOMEBREW_PREFIX/bin
+
 # load configs if provided
 begin
-  set -l ASDF_CONFIG /usr/local/opt/asdf/asdf.fish
+  set -l ASDF_CONFIG $HOMEBREW_PREFIX/opt/asdf/asdf.fish
   set -l LOCAL_CONFIGS ~/.config/fish/config.local.fish
 
-  set -l config_files $ASDF_CONFIG $LOCAL_CONFIGS
+  set -l config_files $LOCAL_CONFIGS $ASDF_CONFIG
 
   for config_file in $config_files;
     if test -f $config_file
@@ -40,6 +49,9 @@ alias lls="ls -lahLSG"
 alias clean_docker='sh -c \'docker rmi $(docker images --quiet --filter "dangling=true")\''
 alias chrcors='open -n -a /Applications/Chromium.app/Contents/MacOS/Chromium  --args --user-data-dir="/tmp/chrome_dev_test" --disable-web-security'
 alias de='cd ~/Develop'
+alias ibrew='arch -x86_64 /usr/local/bin/brew'
+alias abrew='arch -arm64 /opt/homebrew/bin/brew'
+alias ifish='arch -x86_64 /usr/local/Cellar/fish/3.3.1/bin/fish'
 
 # ruby/rails utils
 alias be="bundle exec"
