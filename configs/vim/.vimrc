@@ -6,12 +6,12 @@ set shell=/bin/bash
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
-" File navigation & search
+" ------ File navigation & search ------
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
 
-" Popup completion
+" ------ Popup completion ------
 Plug 'vim-denops/denops.vim'
 " Plug 'vim-denops/denops-helloworld.vim'
 Plug 'Shougo/ddc.vim'
@@ -29,14 +29,14 @@ Plug 'delphinus/ddc-ctags'
 Plug 'matsui54/ddc-ultisnips'
 Plug 'ippachi/ddc-yank'
 
-" Linters
+" ------ Linters & LSP ------
 Plug 'dense-analysis/ale'
 " Plug 'prettier/vim-prettier', {
 "   \ 'do': 'yarn install',
 "   \ 'for': ['javascript', 'scss', 'jsx']
 " \}
 
-" Common
+" ------ Common ------
 Plug 'vim-scripts/vim-auto-save'
 Plug 'tpope/vim-sensible'
 Plug 'mbbill/undotree'
@@ -46,12 +46,12 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
 
-" TreeView
+" ------ TreeView ------
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 
-" Syntax helpers
+" ------ Syntax helpers ------
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
@@ -59,30 +59,28 @@ Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'vim-utils/vim-troll-stopper'
 
-" Snippets & autocompletion
+" ------ Snippets & completion ------
 Plug 'ajh17/VimCompletesMe'
+Plug 'ackyshake/VimCompletesMe'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
 
-" Rails and rspec
+" ------ Rails and rspec ------
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-rails'
 Plug 'alx741/spec.vim'
 
-" Test runner
+" ------ Test runner ------
 Plug 'vim-test/vim-test'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-dispatch'
 
-" Git plugins
+" ------ Git plugins ------
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'idanarye/vim-merginal'
-Plug 'itchyny/vim-gitbranch'
 Plug 'samoshkin/vim-mergetool'
 Plug 'APZelos/blamer.nvim'
 
@@ -129,25 +127,19 @@ endfunction
 set laststatus=2
 set noshowmode
 
-function! LightlineFilename()
-  return denite#get_status('path')
-endfunction
-
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste'  ],
-      \             [ 'readonly', 'filename', 'modified' ],
-      \             [ 'linterinfo' ]],
-      \   'right': [ [ 'lineinfo'  ],
-      \              [ 'percent'  ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fullpath':   'LightlineFilename',
-      \   'gitbranch':  'gitbranch#name',
-      \   'linterinfo': 'LinterStatus',
-      \ },
-      \ }
+  \   'active': {
+  \     'left': [ [ 'mode', 'paste'  ],
+  \               [ 'readonly', 'filename', 'modified' ],
+  \               [ 'linterinfo' ]],
+  \     'right': [ [ 'lineinfo'  ],
+  \                [ 'percent'  ],
+  \                [ 'fileformat', 'fileencoding', 'filetype' ] ]
+  \   },
+  \   'component_function': {
+  \     'linterinfo': 'LinterStatus',
+  \   },
+  \ }
 
 " Disable lightline for NERDTree
 " https://vi.stackexchange.com/questions/22398/disable-lightline-on-nerdtree
