@@ -1,6 +1,12 @@
 snippet defs "Class method definition"
-def self.${1:class_method_name}(${2:*args})
+def self.${1:class_method_name}(${2:...})
 	new($2).$1
+end
+endsnippet
+
+snippet defss "Simple class method definition"
+def self.${1:class_method_name}(${2:*args})
+	${0}
 end
 endsnippet
 
@@ -10,10 +16,36 @@ def ${1:method_name}
 end
 endsnippet
 
+snippet defm "Memoized method definition"
+def ${1:method_name}
+	@$1 ||= ${0}
+end
+endsnippet
+
 snippet atr "attr_reader"
 attr_reader :${1:attribute}
 endsnippet
 
-snippet atw "attr_writer"
-attr_writer :${1:attribute}
+snippet bef "RSpec before each block"
+before { $0 }
+endsnippet
+
+snippet aft "RSpec after each block"
+after { $0 }
+endsnippet
+
+snippet befa "RSpec before all block"
+before(:all) { $0 }
+endsnippet
+
+snippet afta "RSpec after all block"
+after(:all) { $0 }
+endsnippet
+
+snippet subj "RSpec subject"
+subject(:${1:subject}) { $2 }
+endsnippet
+
+snippet ite "it { is_expected }"
+it { is_expected.${2:to} ${1:something} }
 endsnippet

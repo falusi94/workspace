@@ -6,7 +6,7 @@ set shell=/bin/bash
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
-" ------ File navigation & search ------
+" File navigation & search
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
@@ -28,6 +28,8 @@ Plug 'statiolake/ddc-ale'
 Plug 'delphinus/ddc-ctags'
 Plug 'matsui54/ddc-ultisnips'
 Plug 'ippachi/ddc-yank'
+" UIs
+Plug 'Shougo/ddc-ui-native'
 
 " ------ Linters & LSP ------
 Plug 'dense-analysis/ale'
@@ -42,6 +44,7 @@ Plug 'tpope/vim-sensible'
 Plug 'mbbill/undotree'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
+Plug 'rakr/vim-one'
 Plug 'bkad/CamelCaseMotion'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
@@ -56,11 +59,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'sheerun/vim-polyglot'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'alvan/vim-closetag'
 
 Plug 'vim-utils/vim-troll-stopper'
 
 " ------ Snippets & completion ------
-Plug 'ajh17/VimCompletesMe'
 Plug 'ackyshake/VimCompletesMe'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -69,6 +72,7 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-rails'
 Plug 'alx741/spec.vim'
+Plug 'dewyze/vim-ruby-block-helpers'
 
 " ------ Test runner ------
 Plug 'vim-test/vim-test'
@@ -104,7 +108,7 @@ let test#ruby#rspec#options = {
 " ALE init
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
-  \   'ruby': ['ruby', 'solargraph', 'rubocop'],
+  \   'ruby': ['ruby', 'rubocop'],
   \   'javascript': ['eslint', 'prettier'],
   \   'javascriptreact': ['eslint', 'prettirer'],
 \}
@@ -169,7 +173,8 @@ let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
 
 " ddc auto complete
-call ddc#custom#patch_global('sources', ['around', 'yank', 'ale', 'ctags', 'file', 'ultisnips'])
+" call ddc#custom#patch_global('sources', ['around', 'yank', 'ale', 'ctags', 'file', 'ultisnips'])
+call ddc#custom#patch_global('sources', ['around', 'ale', 'file', 'ultisnips'])
 call ddc#custom#patch_global('sourceOptions', {
   \   '_': {
   \     'matchers': ['matcher_fuzzy', 'matcher_length'],
@@ -178,7 +183,6 @@ call ddc#custom#patch_global('sourceOptions', {
   \   },
   \   'ale': {
   \     'mark': 'A',
-  \     'cleanResultsWhitespace': v:false,
   \     'matchers': ['matcher_head', 'matcher_length'],
   \     'sorters': ['sorter_rank'],
   \   },
@@ -202,6 +206,7 @@ call ddc#custom#patch_global('sourceOptions', {
 call ddc#custom#patch_global('filterParams', {
   \   'converter_truncate': { 'maxAbbrWidth': 50, 'maxInfoWidth': 30 },
   \ })
+call ddc#custom#patch_global('ui', 'native')
 
 call ddc#enable()
 
@@ -226,6 +231,8 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit'
 \}
+
+nnoremap <C-g> :!lazygit<cr><cr>
 
 " bkad/CamelCaseMotion
 map <silent> W <Plug>CamelCaseMotion_w
@@ -255,9 +262,13 @@ let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 " Remove auto continuing comments
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" Set YAML comment
+autocmd BufNewFile,BufRead *.yaml,*.yml set filetype=yaml
+autocmd FileType yaml setlocal commentstring=#\ %s
+
 " Override syntax highlight
 autocmd BufNewFile,BufRead *.inky set syntax=eruby
-autocmd BufNewFile,BufRead *.arb set syntax=ruby
+autocmd BufNewFile,BufRead *.arb,*.jb set syntax=ruby ft=ruby
 
 set number relativenumber
 set mouse=a
@@ -278,3 +289,5 @@ endif
 
 syntax on
 colorscheme onedark
+" colorscheme one
+" set background=light
