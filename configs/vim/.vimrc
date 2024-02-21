@@ -7,7 +7,7 @@ set shell=/bin/bash
 call plug#begin('~/.vim/plugged')
 
 " File navigation & search
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'brooth/far.vim'
 
@@ -33,10 +33,10 @@ Plug 'Shougo/ddc-ui-native'
 
 " ------ Linters & LSP ------
 Plug 'dense-analysis/ale'
-" Plug 'prettier/vim-prettier', {
-"   \ 'do': 'yarn install',
-"   \ 'for': ['javascript', 'scss', 'jsx']
-" \}
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'scss', 'jsx']
+\}
 
 " ------ Common ------
 Plug 'vim-scripts/vim-auto-save'
@@ -68,11 +68,15 @@ Plug 'ackyshake/VimCompletesMe'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 
+" ------ Copilot ------
+Plug 'github/copilot.vim'
+
 " ------ Rails and rspec ------
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-rails'
 Plug 'alx741/spec.vim'
 Plug 'dewyze/vim-ruby-block-helpers'
+Plug 'vim-ruby/vim-ruby'
 
 " ------ Test runner ------
 Plug 'vim-test/vim-test'
@@ -98,6 +102,7 @@ let test#strategy = {
   \ 'suite':   'asyncrun_background_term',
 \}
 map <Leader>f  :TestFile<CR>
+map <Leader>ff :TestFile -strategy=asyncrun_background_term<CR>
 map <Leader>ss :TestNearest<CR>
 map <Leader>s  :TestNearest -strategy=vimproc --no-color<CR>
 map <Leader>a  :TestSuite<CR>
@@ -108,9 +113,11 @@ let test#ruby#rspec#options = {
 " ALE init
 let g:ale_completion_enabled = 1
 let g:ale_linters = {
-  \   'ruby': ['ruby', 'rubocop'],
+  \   'ruby': ['ruby', 'rubocop', 'syntax_tree'],
   \   'javascript': ['eslint', 'prettier'],
   \   'javascriptreact': ['eslint', 'prettirer'],
+  \   'typescriptreact': ['eslint', 'prettirer', 'tsserver'],
+  \   'typescript': ['eslint', 'prettirer', 'tsserver'],
 \}
 
 function! LinterStatus() abort
@@ -186,6 +193,9 @@ call ddc#custom#patch_global('sourceOptions', {
   \     'matchers': ['matcher_head', 'matcher_length'],
   \     'sorters': ['sorter_rank'],
   \   },
+  \   'ultisnips': {
+  \     'mark': 'US',
+  \   },
   \   'ctags': {
   \     'mark': 'C',
   \     'matchers': ['matcher_head', 'matcher_length'],
@@ -193,9 +203,6 @@ call ddc#custom#patch_global('sourceOptions', {
   \   },
   \   'yank': {
   \     'mark': 'Y',
-  \   },
-  \   'ultisnips': {
-  \     'mark': 'US',
   \   },
   \   'file': {
   \     'mark': 'F',
@@ -209,9 +216,6 @@ call ddc#custom#patch_global('filterParams', {
 call ddc#custom#patch_global('ui', 'native')
 
 call ddc#enable()
-
-" the_silver_searcher
-let g:ackprg = "ag --nogroup --nocolor --column --ignore-case --ignore={'tmp*','.git*','node_modules'}"
 
 " Far vim
 set lazyredraw            " improve scrolling performance when navigating through large results
@@ -232,7 +236,10 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit'
 \}
 
+nnoremap { :e# <cr>
 nnoremap <C-g> :!lazygit<cr><cr>
+nnoremap <C-p> :set paste!<cr>
+nnoremap <C-x> :BlamerToggle<cr>
 
 " bkad/CamelCaseMotion
 map <silent> W <Plug>CamelCaseMotion_w
@@ -268,13 +275,30 @@ autocmd FileType yaml setlocal commentstring=#\ %s
 
 " Override syntax highlight
 autocmd BufNewFile,BufRead *.inky set syntax=eruby
+autocmd BufNewFile,BufRead *.inky-haml set syntax=haml
 autocmd BufNewFile,BufRead *.arb,*.jb set syntax=ruby ft=ruby
+
+let g:copilot_enabled = 0
 
 set number relativenumber
 set mouse=a
 
 " Spell checking
 autocmd FileType gitcommit,markdown,html,cucumber setlocal spell spelllang=en_us
+
+" Custom project settings
+"   Credits: https://dev.to/vonheikemen/project-based-config-in-vim-48pm
+"   Checks for ~/.vim/local-rc/project-name.vim
+let s:project_name = split(getcwd(), '/')[-1]
+let s:localrc = '~/.vim/local-rc/'
+
+let s:file = expand(s:localrc . s:project_name . '.vim')
+
+if filereadable(s:file)
+  execute 'source' s:file
+endif
+
+execute 'nnoremap <C-x>c :edit' s:file '<cr>'
 
 " Onedark.vim
 " https://github.com/joshdick/onedark.vim
