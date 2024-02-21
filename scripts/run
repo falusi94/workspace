@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 CONFIG_FILES=(
-  '(./configs/fish/config.fish ~/.config/fish/config.fish)'
-  '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
-  '(./configs/vim/.vimrc ~/.vimrc)'
+  '(./configs/fish/config.fish ~/.config/fish/)'
+  '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/)'
+  '(./configs/vim/.vimrc ~/)'
   '(./configs/vim/UltiSnips ~/.vim)'
-  '(./configs/git/.gitconfig ~/.gitconfig)'
-  '(./configs/git/ignore ~/.config/git/ignore)'
-  '(./configs/brew/Brewfile ~/.config/brewfile/Brewfile)'
+  '(./configs/git/.gitconfig ~/)'
+  '(./configs/git/ignore ~/.config/git/)'
+  '(./configs/brew/Brewfile ~/.config/brewfile/)'
 )
 
 echo_header() {
@@ -22,7 +22,7 @@ install_scripts() {
   do
     eval paths=$entry
     echo Copying \"${paths[0]}\" to \"${paths[1]}\"
-    cp -R ${paths[0]} ${paths[1]}
+    mkdir -p ${paths[1]} && cp -R ${paths[0]} ${paths[1]}
   done
 }
 
