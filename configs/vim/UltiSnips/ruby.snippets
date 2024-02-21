@@ -1,3 +1,5 @@
+# Ruby
+
 snippet defs "Class method definition"
 def self.${1:class_method_name}(${2:...})
 	new($2).$1
@@ -26,20 +28,54 @@ snippet atr "attr_reader"
 attr_reader :${1:attribute}
 endsnippet
 
+snippet atw "attr_writer"
+attr_writer :${1:attribute}
+endsnippet
+
+snippet ata "attr_accessor"
+attr_accessor :${1:attribute}
+endsnippet
+
+# RSpec
+
 snippet bef "RSpec before each block"
 before { $0 }
+endsnippet
+
+snippet befl "RSpec before each long block"
+before do
+  $0
+end
 endsnippet
 
 snippet aft "RSpec after each block"
 after { $0 }
 endsnippet
 
+snippet aftl "RSpec after each long block"
+after do
+  $0
+end
+endsnippet
+
 snippet befa "RSpec before all block"
 before(:all) { $0 }
 endsnippet
 
+snippet befa "RSpec before all long block"
+before(:all) do
+  $0
+end
+endsnippet
+
 snippet afta "RSpec after all block"
 after(:all) { $0 }
+endsnippet
+
+snippet afta "RSpec after all long block"
+after(:all) do
+  $0
+end
 endsnippet
 
 snippet subj "RSpec subject"
@@ -48,4 +84,8 @@ endsnippet
 
 snippet ite "it { is_expected }"
 it { is_expected.${2:to} ${1:something} }
+endsnippet
+
+snippet subj "RSpec subject"
+subject(:${1:subject}) { $2 }
 endsnippet
