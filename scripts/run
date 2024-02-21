@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+CONFIG_FILES=(
+  '(./configs/fish/config.fish ~/.config/fish/config.fish)'
+  '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
+  '(./configs/vim/.vimrc ~/.vimrc)'
+  '(./configs/vim/UltiSnips ~/.vim)'
+  '(./configs/git/.gitconfig ~/.gitconfig)'
+  '(./configs/git/ignore ~/.config/git/ignore)'
+)
+
+echo_header() {
+  echo $1
+  echo '----------------------------------------'
+}
+
+install_scripts() {
+  echo_header 'Applying config'
+
+  for entry in "${CONFIG_FILES[@]}"
+  do
+    eval paths=$entry
+    echo Copying \"${paths[0]}\" to \"${paths[1]}\"
+    cp -R ${paths[0]} ${paths[1]}
+  done
+}
+
+pull_changes() {
+  echo_header 'Pulling changes from remote'
+
+  git pull --rebase
+}
+
+case $1 in
+install)
+  install_scripts;;
+update)
+  pull_changes
+  echo '\n'
+  install_scripts;;
+*)
+  echo """
+  Usage:
+    scripts/run [command]
+
+    Command:
+      - install - apply configs
+      - update - pull changes and apply configs
+  """;;
+esac

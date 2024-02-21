@@ -9,5 +9,5 @@ To easily manage my workspace (.dotfiles) between devices. Focusing on:
 ```shell
 git clone git@github.com:falusi94/workspace.git
 cd workspace
-./configure.sh
+scripts/run install
 ```
