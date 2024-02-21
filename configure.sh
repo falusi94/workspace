@@ -5,6 +5,8 @@ CONFIG_FILES=(
   '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish)'
   '(./configs/vim/.vimrc ~/.vimrc)'
   '(./configs/vim/UltiSnips ~/.vim)'
+  '(./configs/git/.gitconfig ~/.gitconfig)'
+  '(./configs/git/ignore ~/.config/git/ignore)'
 )
 
 echo 'Applying config'

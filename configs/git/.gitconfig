@@ -1,0 +1,10 @@
+[user]
+	signingkey = 8074BB5C33107428
+	name = David Falusi
+	email = falusi.david94@gmail.com
+[commit]
+	gpgsign = true
+[core]
+	excludesFile = ~/.config/git/ignore
+[pull]
+	rebase = true
