@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+while getopts ":p:i:c:h" opt; do
+  case $opt in
+    p) pattern="$OPTARG"
+    ;;
+    i) init_container_command="$OPTARG"
+    ;;
+    c) command_to_run="$OPTARG"
+    ;;
+    h) echo "Usage:"
+    echo "./docker_exec -p container-name-pattern -i 'command to start the container' -c 'command to run'"
+    exit 0
+    ;;
+    \?) echo "Invalid option -$OPTARG" >&2
+    exit 1
+    ;;
+  esac
+
+  case $OPTARG in
+    -*) echo "Option $opt needs a valid argument"
+    exit 1
+    ;;
+  esac
+done
+
+container_name() {
+  docker container ls | grep $pattern | head -n1 | awk '{ print $NF }'
+}
+
+init_container() {
+  if [ -z "$init_container_command*" ]; then
+    echo "No container init command provided"
+    exit 1
+  else
+    eval $init_container_command
+  fi
+}
+
+fetch_conatiner() {
+  container=$(container_name)
+}
+
+fetch_conatiner
+
+if [ -z $container ]; then
+  echo "No container running, starting..."
+
+  init_container
+  fetch_conatiner
+  if [ -z $container ]; then
+   echo "Stil no container running"
+
+   exit 1
+  fi
+fi
+
+echo "Running in $container"
+
+docker exec -it $container $command_to_run
