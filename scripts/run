@@ -7,6 +7,7 @@ CONFIG_FILES=(
   '(./configs/vim/UltiSnips ~/.vim)'
   '(./configs/git/.gitconfig ~/.gitconfig)'
   '(./configs/git/ignore ~/.config/git/ignore)'
+  '(./configs/brew/Brewfile ~/.config/brewfile/Brewfile)'
 )
 
 echo_header() {
@@ -31,6 +32,16 @@ pull_changes() {
   git pull --rebase
 }
 
+brew_init() {
+  if [ -z $(which brew) ]; then
+    echo "No brew installed"
+    exit 1
+  fi
+
+  brew install rcmdnk/file/brew-file
+  HOMEBREW_BREWFILE=~/.config/brewfile/Brewfile brew file install
+}
+
 case $1 in
 install)
   install_scripts;;
@@ -38,6 +49,8 @@ update)
   pull_changes
   echo '\n'
   install_scripts;;
+brew)
+  brew_init;;
 *)
   echo """
   Usage:
@@ -46,5 +59,6 @@ update)
     Command:
       - install - apply configs
       - update - pull changes and apply configs
+      - brew - runs brew init (requires installation before)
   """;;
 esac

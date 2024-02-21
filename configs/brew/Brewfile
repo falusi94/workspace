@@ -1,0 +1,35 @@
+# CLI
+brew "atuin"
+brew "bat"
+brew "curl"
+brew "fzf"
+brew "jq"
+brew "libyaml"
+brew "the_silver_searcher"
+brew "tldr"
+
+# Libraries
+brew "coreutils"
+
+# Dev tools
+brew "asdf"
+brew "docker"
+brew "fish"
+brew "gh"
+brew "git"
+brew "gpg-suite-no-mail"
+brew "iterm2"
+brew "lazygit"
+brew "orbstack"
+brew "pinentry-mac"
+brew "tmux"
+brew "vim"
+
+# Others
+brew "appcleaner"
+brew "brave-browser"
+brew "coconutbattery"
+brew "keepassxc"
+brew "keka"
+brew "kekaexternalhelper"
+brew "macdown"
