@@ -1,5 +1,8 @@
-# workspace
-To easily manage my workspace between devices. Mainly focusing on [fish shell](http://fishshell.com) & [Atom](https://atom.io).
+# Workspace
+
+To easily manage my workspace (.dotfiles) between devices. Focusing on:
+- [fish shell](http://fishshell.com)
+- [vim](https://www.vim.org/)
 
 ## Installation
 ```shell
