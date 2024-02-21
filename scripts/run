@@ -8,6 +8,7 @@ CONFIG_FILES=(
   '(./configs/git/.gitconfig ~/)'
   '(./configs/git/ignore ~/.config/git/)'
   '(./configs/brew/Brewfile ~/.config/brewfile/)'
+  '(./configs/tmux/.tmux.conf ~/)'
   '(./bin ~/)'
 )
 

@@ -5,6 +5,7 @@ To easily manage my workspace (.dotfiles) between devices. Focusing on:
 - [vim](https://www.vim.org/)
 - [git](https://git-scm.com/)
 - [brew](https://brew.sh)
+- [tmux](https://github.com/tmux/tmux)
 
 ## Installation
 ```shell
