@@ -20,6 +20,11 @@ if status is-interactive
 
   fish_add_path ~/bin
 
+  # Set up mocword data https://github.com/high-moctane/mocword
+  if test -f ~/mocword.sqlite
+    export MOCWORD_DATA=$(readlink -f ~/mocword.sqlite)
+  end
+
   export GPG_TTY=$(tty)
   export EDITOR=vim
   export LESS=R

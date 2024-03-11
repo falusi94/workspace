@@ -29,6 +29,7 @@ Plug 'delphinus/ddc-ctags'
 Plug 'matsui54/ddc-ultisnips'
 Plug 'ippachi/ddc-yank'
 Plug 'matsui54/ddc-source-dictionary'
+Plug 'Shougo/ddc-source-mocword'
 " UIs
 Plug 'Shougo/ddc-ui-native'
 
@@ -182,7 +183,7 @@ let g:auto_save_in_insert_mode = 0
 
 " ddc auto complete
 " call ddc#custom#patch_global('sources', ['around', 'yank', 'ale', 'ctags', 'file', 'ultisnips'])
-call ddc#custom#patch_global('sources', ['around', 'ale', 'file', 'ultisnips', 'dictionary'])
+call ddc#custom#patch_global('sources', ['around', 'ale', 'file', 'ultisnips', 'dictionary', 'mocword'])
 call ddc#custom#patch_global('sourceOptions', {
   \   '_': {
   \     'matchers': ['matcher_fuzzy', 'matcher_length'],
@@ -212,6 +213,11 @@ call ddc#custom#patch_global('sourceOptions', {
   \   },
   \   'dictionary': {
   \     'mark': 'D',
+  \   },
+  \   'mocword': {
+  \     'mark': 'MW',
+  \     'minAutoCompleteLength': 3,
+  \     'isVolatile': v:true,
   \   },
   \ })
 call ddc#custom#patch_global('sourceParams', {
