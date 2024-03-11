@@ -1,0 +1,10 @@
+debugger
+
+describe
+described_class
+context
+
+has_many
+has_one
+belongs_to
+delegate

@@ -5,6 +5,7 @@ CONFIG_FILES=(
   '(./configs/fish/functions/fish_prompt.fish ~/.config/fish/functions/)'
   '(./configs/vim/.vimrc ~/)'
   '(./configs/vim/UltiSnips ~/.vim)'
+  '(./configs/vim/words ~/.vim)'
   '(./configs/git/.gitconfig ~/)'
   '(./configs/git/ignore ~/.config/git/)'
   '(./configs/brew/Brewfile ~/.config/brewfile/)'
