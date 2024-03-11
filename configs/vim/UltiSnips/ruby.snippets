@@ -86,6 +86,14 @@ snippet ite "it { is_expected }"
 it { is_expected.${2:to} ${1:something} }
 endsnippet
 
-snippet subj "RSpec subject"
-subject(:${1:subject}) { $2 }
+snippet desci "Rspec describe method" m
+describe '#${1:method_name}' do
+  subject(:$1) { ${2:instance}.$1 }
+
+  it { is_expected.${4:to} ${3:something} }
+end
+endsnippet
+
+snippet allo "allow(something).to receive(:method_name)"
+allow(${1:something}).${4:to} receive(:${2:method_name})$3
 endsnippet
