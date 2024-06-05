@@ -12,6 +12,7 @@ CONFIG_FILES=(
   '(./configs/tmux/.tmux.conf ~/)'
   '(./bin ~/)'
   '(./configs/lazygit/config.yml "~/Library/Application\ Support/lazygit/")'
+  '(./configs/atuin/config.toml ~/.config/atuin/)'
 )
 
 echo_header() {
