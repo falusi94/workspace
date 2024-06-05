@@ -1,0 +1,8 @@
+git:
+  commit:
+    autoWrapCommitMessage: false
+    autoWrapwidth: 72
+gui:
+  filterMode: fuzzy
+  showRandomTip: false
+  showCommandLog: false
