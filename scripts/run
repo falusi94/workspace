@@ -63,6 +63,20 @@ install_vim_dependencies() {
   echo 'Install deno 🦖'
   asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
   asdf install deno latest
+
+  echo 'Set up global deno'
+  asdf global deno latest
+
+  echo 'Install rust 🦀'
+  asdf plugin-add rust
+  asdf install rust latest
+
+  echo 'Set up global rust'
+  asdf global rust latest
+
+  echo 'Install mocword'
+  cargo install mocword
+  asdf reshim rust
 }
 
 case $1 in
