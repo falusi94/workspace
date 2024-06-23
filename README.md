@@ -8,6 +8,7 @@ To easily manage my workspace (.dotfiles) between devices. Focusing on:
 - [tmux](https://github.com/tmux/tmux)
 - [lazygit](https://github.com/jesseduffield/lazygit)
 - [atuin](https://github.com/atuinsh/atuin)
+- [asdf-vm](https://github.com/asdf-vm/asdf)
 
 ## Installation
 ```shell

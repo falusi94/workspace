@@ -13,6 +13,9 @@ CONFIG_FILES=(
   '(./bin ~/)'
   '(./configs/lazygit/config.yml "~/Library/Application\ Support/lazygit/")'
   '(./configs/atuin/config.toml ~/.config/atuin/)'
+  '(./configs/asdf/ruby/.default-gems ~/)'
+  '(./configs/asdf/nodejs/.default-npm-packages ~/)'
+  '(./configs/asdf/.asdfrc ~/)'
 )
 
 echo_header() {
@@ -79,6 +82,22 @@ install_vim_dependencies() {
   asdf reshim rust
 }
 
+set_up_dev_env() {
+  echo 'Install ruby 💎'
+  asdf plugin-add ruby
+  asdf install ruby latest
+
+  echo 'Set up global ruby'
+  asdf global ruby latest
+
+  echo 'Install nodejs'
+  asdf plugin-add nodejs
+  asdf install nodejs latest
+
+  echo 'Set up global nodejs'
+  asdf global nodejs latest
+}
+
 case $1 in
 install)
   install_scripts;;
@@ -90,6 +109,8 @@ brew)
   brew_init;;
 vim_dependencies)
   install_vim_dependencies;;
+dev_env)
+  set_up_dev_env;;
 *)
   echo """
   Usage:
@@ -100,5 +121,6 @@ vim_dependencies)
       - update - pull changes and apply configs
       - brew - runs brew init (requires installation before)
       - vim_dependencies - installs vim dependencies
+      - dev_env - set up dev env
   """;;
 esac
