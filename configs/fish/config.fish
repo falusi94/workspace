@@ -41,8 +41,10 @@ if status is-interactive
   alias ll='ls -lahLG'
   alias lls='ls -lahLSG'
   alias de='cd ~/Develop'
+  alias unquarantine='xattr -d com.apple.quarantine'
 
   # 🐳 stuff
+  alias ld='lazydocker'
   alias clean_docker='sh -c \'docker rmi $(docker images --quiet --filter "dangling=true")\''
   alias k='kubectl'
   function kdescyml
@@ -72,6 +74,7 @@ if status is-interactive
   alias nv='npm version'
 
   # Git utils
+  alias lg='lazygit'
   alias g='git'
   alias gpll='git pull --rebase'
   alias gf='git fetch -p'
