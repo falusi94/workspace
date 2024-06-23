@@ -29,6 +29,18 @@ set -q scm_prompt_blacklist; or set -g scm_prompt_blacklist
 # set -g color_dir_bg red
 # If not set, default color from agnoster will be used.
 # ===========================
+set -g color_dir_bg 00897B
+
+set -g color_hg_bg 4CAF50
+set -g color_git_bg 4CAF50
+set -g color_svn_bg 4CAF50
+
+set -g color_hg_changed_bg C0CA33
+set -g color_git_changed_bg C0CA33
+set -g color_svn_changed_bg C0CA33
+
+set -g color_status_nonzero_str E91E63
+set -g fish_color_command 42A5F5
 
 set -q color_virtual_env_bg; or set -g color_virtual_env_bg white
 set -q color_virtual_env_str; or set -g color_virtual_env_str black
