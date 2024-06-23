@@ -98,6 +98,19 @@ set_up_dev_env() {
   asdf global nodejs latest
 }
 
+install_fonts() {
+  echo 'Clone powerline fonts'
+  git clone https://github.com/powerline/fonts.git --depth=1
+
+  echo 'Install powerline fonts'
+  cd fonts
+  ./install.sh
+
+  echo 'Clean up powerline installer'
+  cd ..
+  rm -rf fonts
+}
+
 case $1 in
 install)
   install_scripts;;
@@ -111,6 +124,8 @@ vim_dependencies)
   install_vim_dependencies;;
 dev_env)
   set_up_dev_env;;
+powerline_fonts)
+  install_fonts;;
 *)
   echo """
   Usage:
@@ -122,5 +137,6 @@ dev_env)
       - brew - runs brew init (requires installation before)
       - vim_dependencies - installs vim dependencies
       - dev_env - set up dev env
+      - powerline_fonts - install powerline fonts
   """;;
 esac
