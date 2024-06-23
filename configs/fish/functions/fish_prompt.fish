@@ -19,7 +19,7 @@
 
 set -g current_bg NONE
 set -g segment_separator \uE0B0
-set -g right_segment_separator \uE0B0
+set -g right_segment_separator \uE0B2
 set -q scm_prompt_blacklist; or set -g scm_prompt_blacklist
 
 # ===========================
@@ -54,6 +54,8 @@ set -q color_status_jobs_bg; or set -g color_status_jobs_bg black
 set -q color_status_jobs_str; or set -g color_status_jobs_str cyan
 set -q color_status_private_bg; or set -g color_status_private_bg black
 set -q color_status_private_str; or set -g color_status_private_str purple
+set -q color_status_kubernetes_bg; or set -g color_status_kubernetes_bg 2B66AF
+set -q color_status_kubernetes_str; or set -g color_status_kubernetes_str FFF
 
 # ===========================
 # Git settings
@@ -311,6 +313,23 @@ function prompt_arch -d "display the acrhitecture if it's intel"
   end
 end
 
+function prompt_kubernetes_context -d "display Kubernetes context"
+  if type -q kubectl
+    set bg $color_status_kubernetes_bg
+    set fg $color_status_kubernetes_str
+
+    set_color $bg
+    echo -n "$right_segment_separator"
+
+    set_color $fg -b $bg
+    prompt_segment $bg $fg "☸"
+    echo -n (kubectl config current-context)
+
+    set_color normal
+    set -g current_bg NONE
+  end
+end
+
 # ===========================
 # Apply theme
 # ===========================
@@ -330,4 +349,8 @@ function fish_prompt
     end
   end
   prompt_finish
+end
+
+function fish_right_prompt
+  prompt_kubernetes_context
 end
