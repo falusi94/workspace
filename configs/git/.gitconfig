@@ -6,6 +6,7 @@
 	gpgsign = true
 [core]
 	excludesFile = ~/.config/git/ignore
+	attributesfile = ~/.config/git/gitattributes
 [pull]
 	rebase = true
 [rerere]
