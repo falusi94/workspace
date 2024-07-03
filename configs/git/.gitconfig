@@ -8,3 +8,5 @@
 	excludesFile = ~/.config/git/ignore
 [pull]
 	rebase = true
+[rerere]
+	enabled = true
